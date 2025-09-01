@@ -30,17 +30,17 @@ function Landing() {
   ];
 
   useEffect(() => {
-    glitchSound.current = new Audio('/sounds/subtle-glitch.wav');
+    glitchSound.current = new Audio(process.env.PUBLIC_URL + '/sounds/subtle-glitch.wav');
     glitchSound.current.preload = "auto";
     glitchSound.current.playbackRate = 1.55;
 
-    unsettling1.current = new Audio('/sounds/unsettling-1.mp3');
-    unsettling2.current = new Audio('/sounds/unsettling-2.mp3');
+    unsettling1.current = new Audio(process.env.PUBLIC_URL + '/sounds/unsettling-1.mp3');
+    unsettling2.current = new Audio(process.env.PUBLIC_URL + '/sounds/unsettling-2.mp3');
 
     unsettling1.current.loop = true;
     unsettling2.current.loop = true;
 
-    jumpscareSound.current = new Audio('/sounds/jumpscare.mp3');
+    jumpscareSound.current = new Audio(process.env.PUBLIC_URL + '/sounds/jumpscare.mp3');
     jumpscareSound.current.preload = "auto";
 
     const onCanPlayThrough = () => {
