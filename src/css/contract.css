@@ -1,0 +1,20 @@
+.contract-bg{
+  background: #ffffff;
+}
+
+.contract-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e0e0e0;
+    font-size: 3rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    letter-spacing: 2px;
+    padding: 0 1rem;
+  }
+
+  .contract-text{
+    color: rgb(0, 0, 0);
+  }
