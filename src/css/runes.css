@@ -1,24 +1,96 @@
+/* --- Global Styles --- */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
     background-color: rgb(0, 0, 0);
     font-family: 'Georgia', serif;
-  }
-  
-  .runes-container {
+}
+
+.runes-container {
     height: 100vh;
+    /* IMPORTANT: Override existing flex properties */
+    position: relative; 
+    width: 100vw;
+    overflow: hidden; 
+    /* The flex properties are now only there to center the static text initially */
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #e0e0e0;
-    font-size: 3rem;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
     text-align: center;
+}
+
+/* ---------------------------------------------------- */
+/* --- KEYFRAME ANIMATIONS --- */
+/* ---------------------------------------------------- */
+
+/* 1. Continuous Pulse (for hover) */
+@keyframes red-pulse {
+    0% {
+        /* Adjusted color to be visible on black background */
+        text-shadow: 0 0 5px rgba(255, 0, 0, 0.4); 
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 0, 0, 1), 0 0 30px rgba(255, 0, 0, 0.8);
+    }
+    100% {
+        text-shadow: 0 0 5px rgba(255, 0, 0, 0.4); /* Used a consistent red shadow */
+    }
+}
+
+/* 2. Single Blink (for delay) - New Keyframe */
+@keyframes single-blink {
+    0% { color: black; } /* Start visible */
+    25% { color: red; } /* Invisible */
+    50% { color: black; } /* Visible */
+    75% { color: red; } /* Invisible */
+    100% { color: black; } /* Back to normal */
+}
+
+/* ---------------------------------------------------- */
+/* --- STATIC TEXT STYLE --- */
+/* ---------------------------------------------------- */
+.runes-text{
+    color: red;
+    font-size: 3rem;
     letter-spacing: 2px;
     padding: 0 1rem;
-  }
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    z-index: 1;
+}
 
-  .runes-text{
-    color: red;
-  }
+/* ---------------------------------------------------- */
+/* --- RANDOM LINK STYLING AND EFFECTS --- */
+/* ---------------------------------------------------- */
+
+/* Base style for the randomly placed link */
+.random-link{
+    /* Override color to something visible on black background (was black) */
+    color: black; 
+    font-size: 1.2rem;
+    text-decoration: none; /* Remove underline */
+    cursor: grab; /* Retained your cursor style */
+    
+    /* Ensure all transition smoothly, including when animation starts/stops */
+    transition: all 0.2s ease-out, opacity 0s; 
+    
+    /* Ensure the link is placed absolutely, as set by the React component */
+    position: absolute; 
+    z-index: 2; 
+}
+
+/* Hover Style: Triggers continuous pulsing */
+.random-link:hover {
+    animation-name: red-pulse;
+    animation-duration: 1.5s; 
+    animation-iteration-count: infinite; 
+    animation-timing-function: ease-in-out; 
+}
+
+/* Blink Style: Triggers single-time blink using the 'blinking' class from React */
+.random-link.blinking {
+    animation-name: single-blink;
+    animation-duration: 0.5s; /* Quick flash */
+    animation-iteration-count: 1; /* CRUCIAL: Only run once */
+    animation-timing-function: step-end; /* Makes the on/off state instant */
+}
